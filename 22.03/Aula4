@@ -17,6 +17,12 @@ app.MapGet("/api/produto/listar", () => produtos);
 //POST: http://localhost:5134/api/produto/cadastrar
 app.MapPost("/api/produto/cadastrar", () => "Cadastros");
 
+//EXERCÍCIOS:
+//Receber os dados do produto pela URL da req
+//Receber os dados do produto pelo corpo da req
+//Criar um produto com os dados 
+//Adicionar o prouto na lista
+
 app.Run();
 
 record Produto(string Nome, string Descricao);
