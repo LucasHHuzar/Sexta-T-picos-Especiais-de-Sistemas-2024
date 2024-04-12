@@ -29,7 +29,7 @@ app.MapGet("/api/produto/buscar/{id}", (string id) =>
     {
         if(produtoCadastrado.Id == id)
         {
-            return Result.Ok(produtoCadastrado);//Retornar produto encontrado
+            return Results.Ok(produtoCadastrado);//Retornar produto encontrado
         }
 
     }
@@ -38,7 +38,13 @@ app.MapGet("/api/produto/buscar/{id}", (string id) =>
 });
 
 //POST: http://localhost:5134/api/produto/cadastrar
-app.MapPost("/api/produto/cadastrar", () => "Cadastros de produtos");
+app.MapPost("/api/produto/cadastrar", (Produto produto) => 
+{
+    //Adicionar o produto dentro da lista
+    produtos.Add(produto);
+
+    return Results.Created("", produto);
+});
 
 //EXERCÍCIOS:
 //Receber os dados do produto pela URL da req
