@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace API.Models;
 
 public class Produto
@@ -19,9 +21,17 @@ public class Produto
     }
 
     //Características - Atributos e propriedades
+    //Validação - Data Annotations em C#
     public string? Id { get; set; }
+
+    [Required(ErrorMessage = "Campo Obrigatório!")]
     public string? Nome { get; set; } //--> Comando de get e set em C#
+
+    [MinLength(3, ErrorMessage = "Mínimo de 3 caracteres!")]
+    [MaxLength(10, ErrorMessage = "Máximo de 10 caracteres!")]
     public string? Descricao { get; set; }
+
+    [Range(1, 1000, ErrorMessage = "Valor entre 1 e 1000!")]
     public double Valor { get; set; }
     public DateTime CriadoEm { get; set; }
     public int Quantidade { get; set; }
