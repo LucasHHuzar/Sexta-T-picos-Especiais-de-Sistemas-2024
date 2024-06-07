@@ -7,6 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 //Registrar o serviço de banco de dados da aplicação
 builder.Services.AddDbContext<AppDataContext>();
 
+//Configurar a política de CORS
+builder.Services.AddCors(options => options.AddPolicy("Acesso Total", configs => configs.AllowAnyOrigin()
+                                                                                        .AllowAnyHeader()   
+                                                                                        .AllowAnyMethod()) 
+);
+
 var app = builder.Build();
 
 Produto produto = new Produto();
@@ -113,6 +119,8 @@ app.MapPut("/api/produto/alterar/{id}", ([FromRoute] string id,[FromBody] Produt
     return Results.Ok("Produto alterado com sucesso!");
 
 });
+
+app.UseCors("Acesso Total");
 
 app.Run();
 
