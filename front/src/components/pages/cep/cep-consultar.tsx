@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Endereco } from "../../../models/Endereco";
 
 //EXERCÍCIOS
 //1 - Consutar os produtos da API(CORS)
@@ -15,9 +16,9 @@ function CepConsultar(){
         //FETCH ou AXIOS
         fetch("https://viacep.com.br/ws/01001000/json/").then((resposta) => 
             resposta.json()
-        ).then((cep) => {
-            console.log(cep.logradouro);
-            setRua(cep.logradouro);
+        ).then((endereco : Endereco) => {
+            console.log(endereco.logradouro);
+            setRua(endereco.logradouro);
         });
     }, []);
 
