@@ -29,42 +29,11 @@ function ProdutoListar(){
             setProdutos(produtos);
         });
     }
-    
-    function cadastrarProdutos(){
-
-        const produto : Produto = {
-            nome : "Strogonoff",
-	        descricao : "Delicia",
-	        valor : 20,
-	        quantidade : 25
-        }
-
-        //FETCH ou AXIOS
-        fetch("http://localhost:5134/api/produto/cadastrar", 
-        {
-            method : "POST", 
-            headers : {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(produto)
-            
-        }).then((resposta) => 
-
-            resposta.json()
-
-        ).then((produto : Produto) => {
-
-            console.table(produto);
-
-        });
-    }
 
     return(
         <div>
 
             <h1>Listar Produtos</h1>
-
-            <button onClick={cadastrarProdutos}>Cadastrar</button>
 
             <table border={1}>
                 <thead>
