@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Endereco } from "../../../models/Endereco";
 import { setCommentRange } from "typescript";
 import { Produto } from "../../../models/Produto";
+import axios from "axios";
 
 //EXERCÍCIOS
 //1 - Consutar os produtos da API(CORS)
@@ -30,6 +31,15 @@ function ProdutoListar(){
         });
     }
 
+    function deletar(id: string){
+        console.log(`Id: ${id}`);
+        
+        axios.delete(`http://localhost:5134/api/produto/deletar/${id}`).then(resposta => {
+            console.log(resposta.data);
+            setProdutos(resposta.data);
+        });
+    }
+
     return(
         <div>
 
@@ -44,6 +54,7 @@ function ProdutoListar(){
                         <th>Quantidade</th>
                         <th>Valor</th>
                         <th>CriadoEm</th>
+                        <th>Deletar</th>
                     </tr>
                 </thead>
 
@@ -57,6 +68,9 @@ function ProdutoListar(){
                             <td>{produto.quantidade}</td>
                             <td>{produto.valor}</td>
                             <td>{produto.criadoEm}</td>
+                            <td>
+                                <button onClick={() => { deletar(produto.id!) }}>Deletar</button>
+                            </td>
                         </tr>
 
                     ))}

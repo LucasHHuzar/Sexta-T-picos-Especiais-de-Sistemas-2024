@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { Produto } from "../../../models/Produto";
+import { useNavigate } from "react-router-dom";
 
 function ProdutoCadastrar(){
+
+    const navigate = useNavigate();
 
     const [nome, setNome] = useState("");
     const [descricao, setDescricao] = useState("");
     const [valor, setValor] = useState(0);
     const [quantidade, setQuantidade] = useState(0);
 
-    function cadastrarProduto(){
+    function cadastrarProduto(e : any){
 
         const produto : Produto = {
             nome : nome,
@@ -32,9 +35,11 @@ function ProdutoCadastrar(){
 
         ).then((produto : Produto) => {
 
-            console.table(produto);
+            navigate("/pages/produto/listar");
 
         });
+
+        e.preventDefault();
     }
     
     return (
@@ -53,21 +58,21 @@ function ProdutoCadastrar(){
 
             <label>Descrição:</label>
             <input type="text" placeholder="Digite uma descrição do produto" onChange={(e : any) => 
-                setDescricao(e.target.value)} required />
+                setDescricao(e.target.value)}  />
 
             <br />
             <br />
             
             <label>Valor:</label>
             <input type="text" placeholder="Digite o valor" onChange={(e : any) => 
-                setValor(e.target.value)} required />
+                setValor(e.target.value)}  />
             
             <br />
             <br />
 
             <label>Quantidade:</label>
             <input type="text" placeholder="Digite a quantidade" onChange={(e : any) => 
-                setQuantidade(e.target.value)} required />
+                setQuantidade(e.target.value)}  />
 
             <br />
             <br />

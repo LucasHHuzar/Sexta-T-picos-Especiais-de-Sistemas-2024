@@ -93,7 +93,7 @@ app.MapDelete("/api/produto/deletar/{id}", ([FromRoute] string id, [FromServices
     ctx.Produtos.Remove(produto);
     ctx.SaveChanges();
 
-    return Results.Ok("Produto removido com sucesso!");
+    return Results.Ok(ctx.Produtos.ToList());
 
 });
 
